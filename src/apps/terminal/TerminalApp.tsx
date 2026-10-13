@@ -119,7 +119,7 @@ export default function TerminalApp() {
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
-            className="min-w-0 flex-1 bg-transparent text-term-text caret-mint outline-none focus-visible:outline-none"
+            className="min-w-0 flex-1 bg-transparent text-term-text caret-mint outline-none focus-visible:outline-none!"
           />
         </label>
         <div ref={bottomRef} />

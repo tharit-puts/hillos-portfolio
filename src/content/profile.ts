@@ -9,13 +9,13 @@ export const profile = {
   location: "Bangkok, Thailand",
 
   // TODO: replace with your real details
-  email: "you@example.com",
+  email: "tharit.put@gmail.com",
   links: {
-    github: "https://github.com/your-username",
-    linkedin: "https://www.linkedin.com/in/your-profile",
+    github: "https://github.com/tharit-puts",
+    linkedin: "https://www.linkedin.com/in/tharit-puts",
   },
   /** Put your real PDF at /public/resume.pdf */
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Tharit_Putsorn_Resume.pdf",
 
   about: [
     "Games & Interactive Media grad (First Class Honors, Bangkok University) who spent almost three years in IT sales fixing 100+ customer tech problems a month. Now I fix them in code.",

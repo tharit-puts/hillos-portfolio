@@ -38,7 +38,7 @@ export function BootScreen() {
           <p
             key={line}
             className="animate-line-in"
-            style={{ animationDelay: `${i * 0.25}s` }}
+            style={{ animationDelay: `${i * 0.5}s` }}
           >
             {i === 0 ? <span className="font-pixel text-lg text-sun">{line}</span> : line}
           </p>

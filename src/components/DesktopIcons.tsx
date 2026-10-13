@@ -11,7 +11,7 @@ export function DesktopIcons() {
   return (
     <nav
       aria-label="Desktop"
-      className="grid grid-cols-3 gap-2 p-4 sm:grid-cols-6 md:absolute md:top-5 md:left-4 md:z-[1] md:flex md:flex-col md:gap-1.5 md:p-0"
+      className="grid grid-cols-3 gap-2 p-4 sm:grid-cols-6 md:absolute md:top-5 md:left-10 md:z-[1] md:flex md:flex-col md:gap-5 md:p-0"
     >
       {icons.map((id) => (
         <button

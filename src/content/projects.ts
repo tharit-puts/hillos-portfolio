@@ -23,9 +23,9 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Supabase", "Prisma", "Stripe", "Gemini"],
   },
   {
-    slug: "schooler",
-    name: "Schooler",
-    kind: "Team project · Course Flow",
+    slug: "course-flow",
+    name: "Course Flow",
+    kind: "Team project · Schooler",
     summary: "Online class management platform for admins and students.",
     role: "Java backend for assignment edit/delete, promo-code CRUD and a drag-and-drop fix.",
     stack: ["Vue", "Java", "Clerk"],

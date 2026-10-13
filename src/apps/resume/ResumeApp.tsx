@@ -1,8 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import resumeImage from "@/assets/Tharit_Putsorn_Resume.png";
 import { buttonClass } from "@/components/ui";
 import { profile } from "@/content/profile";
+
+/** The resume is shown at this fraction of the image's real size (0.5 = 50%). */
+const RESUME_ZOOM = 0.5;
 
 /** The progress bar is just for fun — the real download starts immediately. */
 export default function ResumeApp() {
@@ -27,20 +32,33 @@ export default function ResumeApp() {
 
   return (
     <div className="flex flex-col gap-3.5 p-6">
-      <div aria-hidden className="flex flex-col gap-2 border-2 border-ink bg-neutral-50 p-4">
-        <p className="font-bold uppercase">{profile.name}</p>
-        <p className="text-xs text-violet">{profile.role}</p>
-        <div className="h-2 w-[90%] bg-neutral-300" />
-        <div className="h-2 w-[70%] bg-neutral-300" />
-        <div className="h-2 w-[82%] bg-neutral-300" />
+      {/* Scroll with the mouse wheel; on narrow screens it also pans sideways. */}
+      <div
+        tabIndex={0}
+        role="region"
+        aria-label={`${profile.name} — resume`}
+        className="h-[60dvh] overflow-auto border-2 border-ink bg-white md:h-120"
+      >
+        <Image
+          src={resumeImage}
+          alt={`${profile.name} resume`}
+          width={Math.round(resumeImage.width * RESUME_ZOOM)}
+          quality={90}
+          className="h-auto max-w-none"
+        />
       </div>
       <div className="relative h-4 border-2 border-ink bg-white" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="Download progress">
         <div className="absolute inset-y-0 left-0 bg-violet transition-[width] duration-150" style={{ width: `${progress}%` }} />
       </div>
       <p className="text-[13px]" aria-live="polite">{label}</p>
-      <a className={buttonClass.dark} href={profile.resumeUrl} download onClick={startFakeProgress}>
-        Download resume.pdf
-      </a>
+      <div className="flex flex-wrap gap-2.5">
+        <a className={buttonClass.dark} href={profile.resumeUrl} download onClick={startFakeProgress}>
+          Download resume.pdf
+        </a>
+        <a className={buttonClass.light} href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+          Open in new tab
+        </a>
+      </div>
     </div>
   );
 }

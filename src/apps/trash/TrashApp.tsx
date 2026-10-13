@@ -7,6 +7,10 @@ import { useOS } from "@/os/OSProvider";
 const MESSAGES = [
   "Nothing here. Every bug I found got fixed.",
   "Still empty. Clean code only.",
+  "Why are you still clicking?",
+  "Trust me, nothing here.",
+  "This is a joke, right?",
+  "You're just wasting your time.",
   "OK, you really like clicking. Here are my projects instead.",
 ];
 
