@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { appIds } from "@/apps/manifest";
 import { registry } from "@/apps/registry";
 import { profile } from "@/content/profile";
@@ -8,7 +8,9 @@ import { OSProvider, useOS } from "@/os/OSProvider";
 import { BootScreen } from "./BootScreen";
 import { DesktopIcons } from "./DesktopIcons";
 import { MenuBar } from "./MenuBar";
+import { SHUTDOWN_MS, ShutdownScreen, type PowerState } from "./ShutdownScreen";
 import { StickyNote } from "./StickyNote";
+import { TaskBar } from "./TaskBar";
 import { Window } from "./Window";
 
 export default function Desktop() {
@@ -20,7 +22,17 @@ export default function Desktop() {
 }
 
 function DesktopScreen() {
-  const { state, focused, close } = useOS();
+  const { state, focused, close, shutdown } = useOS();
+  const [power, setPower] = useState<PowerState>("on");
+  /** Bumped on every power-on so <BootScreen> remounts and replays its animation. */
+  const [boots, setBoots] = useState(0);
+
+  // After the "Shutting down…" screen has shown for a while, go dark.
+  useEffect(() => {
+    if (power !== "shutting-down") return;
+    const t = window.setTimeout(() => setPower("off"), SHUTDOWN_MS);
+    return () => window.clearTimeout(t);
+  }, [power]);
 
   // On phones, start on the clean desktop instead of stacked full-screen windows.
   useEffect(() => {
@@ -66,7 +78,20 @@ function DesktopScreen() {
             );
           })}
       </main>
-      <BootScreen />
+      <TaskBar
+        onShutdown={() => {
+          shutdown(); // windows close behind the overlay
+          setPower("shutting-down");
+        }}
+      />
+      <BootScreen key={boots} always={boots > 0} />
+      <ShutdownScreen
+        power={power}
+        onPowerOn={() => {
+          setBoots((n) => n + 1);
+          setPower("on");
+        }}
+      />
     </div>
   );
 }

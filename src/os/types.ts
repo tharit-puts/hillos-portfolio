@@ -30,4 +30,5 @@ export type OSAction =
   | { type: "focus"; id: AppId }
   | { type: "move"; id: AppId; position: Point }
   | { type: "minimize"; id: AppId }
-  | { type: "refill" };
+  | { type: "refill" }
+  | { type: "shutdown" };

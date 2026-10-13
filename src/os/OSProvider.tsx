@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useMemo, useReducer, type ReactNode } from "react";
 import { manifest } from "@/apps/manifest";
-import { focusedId, osReducer } from "./reducer";
+import { focusedId, osReducer, taskbarAction } from "./reducer";
 import type { AppId, OSState, Point } from "./types";
 
 export const initialOSState: OSState = {
@@ -22,6 +22,10 @@ interface OSApi {
   move: (id: AppId, position: Point) => void;
   minimize: (id: AppId) => void;
   refill: () => void;
+  /** Click on an app's taskbar button: minimize it if on top, otherwise bring it forward. */
+  toggleFromTaskbar: (id: AppId) => void;
+  /** Close every window. */
+  shutdown: () => void;
 }
 
 const OSContext = createContext<OSApi | null>(null);
@@ -45,6 +49,8 @@ export function OSProvider({
       move: (id, position) => dispatch({ type: "move", id, position }),
       minimize: (id) => dispatch({ type: "minimize", id }),
       refill: () => dispatch({ type: "refill" }),
+      toggleFromTaskbar: (id) => dispatch(taskbarAction(state, id)),
+      shutdown: () => dispatch({ type: "shutdown" }),
     }),
     [state],
   );

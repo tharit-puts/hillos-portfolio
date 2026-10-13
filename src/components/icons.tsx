@@ -1,4 +1,5 @@
 import type { AppId } from "@/os/types";
+import { cn } from "./ui";
 
 /** Desktop icons, drawn as inline SVG so they stay crisp and need no image files. */
 export function AppIcon({ id }: { id: AppId }) {
@@ -68,11 +69,39 @@ export function MinimizeIcon() {
   );
 }
 
-export function LogoIcon() {
+export function LogoIcon({ size = 18 }: { size?: number }) {
   return (
-    <svg aria-hidden width="18" height="18" viewBox="0 0 18 18">
+    <svg aria-hidden width={size} height={size} viewBox="0 0 18 18">
       <circle cx="9" cy="9" r="7.5" fill="#fff" stroke="currentColor" strokeWidth="2" />
       <path d="M9 1.5a7.5 7.5 0 0 1 0 15z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function PowerIcon() {
+  return (
+    <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M8 1.5v6" />
+      <path d="M4.2 4a5.5 5.5 0 1 0 7.6 0" />
+    </svg>
+  );
+}
+
+/** Same as shadcn/ui's <Spinner /> (lucide "loader-circle" + animate-spin). Size it with size-* classes. */
+export function Spinner({ className }: { className?: string }) {
+  return (
+    <svg
+      role="status"
+      aria-label="Loading"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={cn("size-4 animate-spin", className)}
+    >
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   );
 }

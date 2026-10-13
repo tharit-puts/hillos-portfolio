@@ -9,7 +9,7 @@ export const profile = {
   location: "Bangkok, Thailand",
 
   // TODO: replace with your real details
-  email: "tharit.put@gmail.com",
+  email: "tharit.puts@gmail.com",
   links: {
     github: "https://github.com/tharit-puts",
     linkedin: "https://www.linkedin.com/in/tharit-puts",
