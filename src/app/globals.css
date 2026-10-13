@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Every value here becomes a Tailwind utility:
+ *   --color-sun   -> bg-sun, text-sun, border-sun
+ *   --shadow-hard -> shadow-hard
+ *   --animate-pop -> animate-pop
+ * Change the look of the whole OS from this one block.
+ */
+@theme {
+  --color-ink: #1b1b1f;
+  --color-lilac: #cbc4f3;
+  --color-violet: #4b2fc4;
+  --color-sun: #ffd35c;
+  --color-sky: #9fe3ff;
+  --color-coral: #ff6b57;
+  --color-mint: #7ee081;
+  --color-term: #141418;
+  --color-term-text: #d9f7dd;
+
+  --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+
+  --shadow-hard: 7px 7px 0 var(--color-ink);
+  --shadow-hard-sm: 5px 5px 0 var(--color-ink);
+  --shadow-btn: 3px 3px 0 var(--color-violet);
+  --shadow-btn-hover: 5px 5px 0 var(--color-violet);
+
+  --animate-pop: pop 0.25s cubic-bezier(0.2, 1.5, 0.4, 1);
+  --animate-wiggle: wiggle 0.45s ease-in-out;
+  --animate-blink: blink 1s steps(1) infinite;
+  --animate-boot-out: boot-out 0.35s ease-in 1.5s forwards;
+  --animate-line-in: line-in 0.01s linear both;
+
+  @keyframes pop {
+    from { transform: scale(0.88) translateY(10px); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-9deg) scale(1.06); }
+    75% { transform: rotate(9deg) scale(1.06); }
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes boot-out {
+    to { opacity: 0; visibility: hidden; }
+  }
+  @keyframes line-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+html,
+body {
+  background: var(--color-ink);
+  color: var(--color-ink);
+}
+
+/* The dotted desktop wallpaper */
+.bg-desk {
+  background-color: var(--color-lilac);
+  background-image: radial-gradient(var(--color-ink) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
