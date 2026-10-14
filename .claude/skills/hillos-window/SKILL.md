@@ -109,7 +109,7 @@ TypeScript จะฟ้องทุกจุดที่ลืม (เพรา�
 - **มือถือ**: ตอน mount ถ้าจอ < 768px `Desktop` ปิดหน้าต่างทั้งหมดให้เริ่มที่ desktop สะอาดๆ
 - **`Esc`** ปิดหน้าต่างบนสุด แต่จะไม่ทำงานถ้า target เป็น `INPUT` หรือ `TEXTAREA` (กำลังพิมพ์)
   ถ้าเพิ่ม element ที่รับพิมพ์ชนิดอื่น (เช่น `contenteditable`, `select`) ต้องไปเพิ่มเงื่อนไขใน `Desktop.tsx`
-- **Overlay ที่ลอยเหนือหน้าต่าง** (เช่น ตัวดูรูปใน `src/apps/about/PhotoViewer.tsx`):
+- **Overlay ที่ลอยเหนือหน้าต่าง** (เช่น ตัวดูรูปใน `src/components/PhotoViewer.tsx`):
   - render ด้วย `createPortal(..., document.body)` เพื่อไม่ติดอยู่ใน stacking context ของหน้าต่าง
   - ใช้ `z-[1000]`
   - ดักปุ่ม `Esc` ที่ `window` แบบ **capture phase** แล้ว `e.stopPropagation()` ไม่งั้น `Esc` จะปิดหน้าต่างที่อยู่ข้างหลังด้วย

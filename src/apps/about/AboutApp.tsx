@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import hillPhoto from "@/assets/hill-photo.jpg";
+import { PhotoViewer } from "@/components/PhotoViewer";
 import { buttonClass } from "@/components/ui";
 import { profile } from "@/content/profile";
 import { useOS } from "@/os/OSProvider";
-import { PhotoViewer } from "./PhotoViewer";
 
 const PHOTO_ALT = `${profile.nickname}, standing by a river`;
 
