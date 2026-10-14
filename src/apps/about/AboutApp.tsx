@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import hillPhoto from "@/assets/hill-photo.jpg";
-import { Chip, buttonClass } from "@/components/ui";
+import { buttonClass } from "@/components/ui";
 import { profile } from "@/content/profile";
-import { skillGroupLabels, skills, type SkillGroup } from "@/content/skills";
 import { useOS } from "@/os/OSProvider";
 import { PhotoViewer } from "./PhotoViewer";
 
@@ -59,8 +58,8 @@ export default function AboutApp() {
         <button type="button" className={buttonClass.dark} onClick={() => open("projects")}>
           Open Projects/
         </button>
-        <button type="button" className={buttonClass.light} onClick={() => open("terminal")}>
-          Try the terminal
+        <button type="button" className={buttonClass.light} onClick={() => open("resume")}>
+          Resume
         </button>
       </div>
 
@@ -74,20 +73,6 @@ export default function AboutApp() {
             </div>
           ))}
         </dl>
-      </section>
-
-      <section aria-label="Skills" className="flex flex-col gap-2">
-        <h3 className="font-pixel text-sm">SKILLS</h3>
-        {(Object.keys(skills) as SkillGroup[]).map((group) => (
-          <div key={group} className="flex flex-col gap-1">
-            <span className="text-xs uppercase opacity-60">{skillGroupLabels[group]}</span>
-            <div className="flex flex-wrap gap-1.5">
-              {skills[group].map((skill) => (
-                <Chip key={skill.name}>{skill.name}</Chip>
-              ))}
-            </div>
-          </div>
-        ))}
       </section>
     </div>
   );

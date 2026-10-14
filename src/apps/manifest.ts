@@ -29,7 +29,6 @@ export const manifest: Record<AppId, AppManifest> = {
     title: "About.txt",
     defaultPosition: { x: 600, y: 32 },
     widthClass: "w-[520px]",
-    heightClass: "md:h-[760px]",
     titleBarClass: "bg-sun",
     onDesktop: true,
   },
