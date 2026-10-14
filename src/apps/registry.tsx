@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { AppId } from "@/os/types";
 import AboutApp from "./about/AboutApp";
 import ContactApp from "./contact/ContactApp";
+import GuestbookApp from "./guestbook/GuestbookApp";
 import ProjectsApp from "./projects/ProjectsApp";
 import ResumeApp from "./resume/ResumeApp";
 import TerminalApp from "./terminal/TerminalApp";
@@ -18,5 +19,6 @@ export const registry: Record<AppId, ComponentType> = {
   terminal: TerminalApp,
   resume: ResumeApp,
   contact: ContactApp,
+  guestbook: GuestbookApp,
   trash: TrashApp,
 };

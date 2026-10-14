@@ -43,11 +43,12 @@ function DesktopScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Esc closes the focused window (but not while typing in the terminal).
+  // Esc closes the focused window (but not while typing in the terminal or a form).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape" || !focused) return;
-      if ((e.target as HTMLElement | null)?.tagName === "INPUT") return;
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       close(focused);
     };
     window.addEventListener("keydown", onKey);

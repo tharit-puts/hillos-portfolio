@@ -8,13 +8,12 @@ export const profile = {
   role: "Full-Stack Developer",
   location: "Bangkok, Thailand",
 
-  // TODO: replace with your real details
   email: "tharit.puts@gmail.com",
   links: {
     github: "https://github.com/tharit-puts",
     linkedin: "https://www.linkedin.com/in/tharit-puts",
   },
-  /** Put your real PDF at /public/resume.pdf */
+  /** PDF served from /public (the on-screen preview is src/assets/Tharit_Putsorn_Resume.png). */
   resumeUrl: "/Tharit_Putsorn_Resume.pdf",
 
   about: [

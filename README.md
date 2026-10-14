@@ -25,8 +25,9 @@ npm run dev        # เปิด http://localhost:3000
 
 ### สิ่งที่ต้องแก้ก่อนใช้จริง
 
-- [ ] `src/content/profile.ts` → `email`, `links.github`, `links.linkedin`
-- [ ] `public/resume.pdf` → แทนที่ด้วย resume จริง (ตอนนี้เป็นไฟล์ตัวอย่าง)
+- [x] `src/content/profile.ts` → `email`, `links.github`, `links.linkedin` (ใส่ของจริงแล้ว)
+- [x] `public/Tharit_Putsorn_Resume.pdf` → resume จริง (ไฟล์ที่ปุ่ม Download ชี้ไป) และ `src/assets/Tharit_Putsorn_Resume.png` สำหรับแสดงในหน้าต่าง Resume
+      ถ้าอัปเดต resume ต้องเปลี่ยนทั้งสองไฟล์
 - [ ] `src/content/projects.ts` → ใส่ `liveUrl` / `repoUrl` ของแต่ละโปรเจกต์ (ปุ่มจะขึ้นมาเอง)
 
 ---

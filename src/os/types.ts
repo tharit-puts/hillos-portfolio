@@ -4,6 +4,7 @@ export type AppId =
   | "terminal"
   | "resume"
   | "contact"
+  | "guestbook"
   | "trash";
 
 export interface Point {
