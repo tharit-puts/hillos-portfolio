@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { buttonClass, cn } from "@/components/ui";
-import { profile } from "@/content/profile";
-
-/** Opens a new Gmail compose window addressed to me, instead of the computer's default mail app (mailto:). */
-const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`;
+import { emailComposeUrl, profile } from "@/content/profile";
 
 export default function ContactApp() {
   const [copied, setCopied] = useState(false);
@@ -32,7 +29,7 @@ export default function ContactApp() {
       </p>
       <div className="flex items-center gap-2.5 border-2 border-ink py-2 pr-2 pl-3.5">
         <a
-          href={gmailComposeUrl}
+          href={emailComposeUrl}
           target="_blank"
           rel="noopener noreferrer"
           title="Compose in Gmail"

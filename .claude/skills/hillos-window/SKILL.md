@@ -89,7 +89,7 @@ TypeScript จะฟ้องทุกจุดที่ลืม (เพรา�
 
 - สี: `bg-ink`, `bg-lilac`, `bg-violet`, `bg-sun`, `bg-sky`, `bg-coral`, `bg-mint`, `bg-term`
 - เงาแข็ง: `shadow-hard`, `shadow-hard-sm`, `shadow-btn`, `shadow-btn-hover`
-- อนิเมชัน: `animate-pop`, `animate-wiggle`, `animate-blink`
+- อนิเมชัน: `animate-pop`, `animate-wiggle`, `animate-blink`, `animate-alert` (กะพริบแดง/เหลืองของกระดิ่งแจ้งเตือน `src/components/Notification.tsx`)
 - กรอบ: `border-2 border-ink` เป็นภาษาของทั้ง OS
 - หัวข้อ: `font-pixel`
 - ปุ่ม: `buttonClass.dark` / `buttonClass.light` จาก `src/components/ui.tsx` (ปรับขนาดด้วย `cn(buttonClass.dark, "min-h-9 px-3")`)
