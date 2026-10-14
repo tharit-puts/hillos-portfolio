@@ -66,7 +66,9 @@ export const commands: Record<string, Command> = {
       if (d === "") return say(`${Object.keys(FILES).join("  ")}  projects/  skills/  resume.pdf`);
       if (d === "skills")
         return say(
-          ...Object.entries(skills).map(([group, list]) => `${(group + "/").padEnd(11)}${list.join("  ")}`),
+          ...Object.entries(skills).map(
+            ([group, list]) => `${(group + "/").padEnd(11)}${list.map((s) => s.name).join("  ")}`,
+          ),
         );
       if (d === "projects") return say(projects.map((p) => `${p.slug}/`).join("  "));
       return say(`ls: cannot access '${dir}': No such file or directory`);

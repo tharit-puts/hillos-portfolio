@@ -43,6 +43,16 @@ export function AppIcon({ id }: { id: AppId }) {
           <path d="M3 9l23 17L49 9" fill="none" />
         </svg>
       );
+    case "skills":
+      return (
+        <svg width="52" height="44" viewBox="0 0 52 44" {...common}>
+          <rect x="3" y="3" width="46" height="38" fill="#fff" />
+          <rect x="9" y="9" width="15" height="11" fill="var(--color-sun)" strokeWidth="2" />
+          <rect x="28" y="9" width="15" height="11" fill="var(--color-sky)" strokeWidth="2" />
+          <rect x="9" y="24" width="15" height="11" fill="var(--color-coral)" strokeWidth="2" />
+          <rect x="28" y="24" width="15" height="11" fill="var(--color-mint)" strokeWidth="2" />
+        </svg>
+      );
     case "guestbook":
       return (
         <svg width="44" height="52" viewBox="0 0 44 52" {...common}>
@@ -109,6 +119,15 @@ export function Spinner({ className }: { className?: string }) {
       className={cn("size-4 animate-spin", className)}
     >
       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
+  );
+}
+
+export function BellIcon() {
+  return (
+    <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+      <path d="M4 11V7a4 4 0 0 1 8 0v4l1.5 1.5h-11z" />
+      <path d="M6.5 14a1.5 1.5 0 0 0 3 0" />
     </svg>
   );
 }

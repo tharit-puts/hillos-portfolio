@@ -36,7 +36,7 @@ export function PhotoViewer({ src, alt, onClose }: { src: StaticImageData; alt: 
       <Image
         src={src}
         alt={alt}
-        sizes="(max-width: 768px) 100vw, 1000px"
+        sizes="100vw"
         quality={90}
         className="h-auto max-h-[calc(100dvh-2rem)] w-auto max-w-full border-2 border-ink bg-white object-contain shadow-hard"
       />

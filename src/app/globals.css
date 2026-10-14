@@ -29,6 +29,7 @@
   --animate-pop: pop 0.25s cubic-bezier(0.2, 1.5, 0.4, 1);
   --animate-wiggle: wiggle 0.45s ease-in-out;
   --animate-blink: blink 1s steps(1) infinite;
+  --animate-alert: alert 0.9s steps(1) infinite;
   --animate-boot-out: boot-out 0.4s ease-in 3.2s forwards;
   --animate-line-in: line-in 0.01s linear both;
 
@@ -40,6 +41,11 @@
     0%, 100% { transform: rotate(0); }
     25% { transform: rotate(-9deg) scale(1.06); }
     75% { transform: rotate(9deg) scale(1.06); }
+  }
+  /* Red/yellow flash for an unread notification. With reduced motion it stays on the element's own colour. */
+  @keyframes alert {
+    0% { background-color: var(--color-coral); }
+    50% { background-color: var(--color-sun); }
   }
   @keyframes blink {
     50% { opacity: 0; }

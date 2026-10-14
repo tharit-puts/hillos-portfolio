@@ -4,6 +4,7 @@ import { useOS } from "@/os/OSProvider";
 import type { AppId } from "@/os/types";
 import { useClock } from "@/os/useClock";
 import { CupIcon, LogoIcon } from "./icons";
+import { Notification } from "./Notification";
 import { cn } from "./ui";
 
 const MENU: Array<{ id: AppId; label: string; highlight?: boolean }> = [
@@ -39,6 +40,7 @@ export function MenuBar() {
             {m.label}
           </button>
         ))}
+        <Notification />
       </nav>
 
       <div className="flex items-center gap-3 text-[13px]">

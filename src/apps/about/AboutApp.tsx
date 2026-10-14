@@ -3,11 +3,10 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import hillPhoto from "@/assets/hill-photo.jpg";
-import { Chip, buttonClass } from "@/components/ui";
+import { PhotoViewer } from "@/components/PhotoViewer";
+import { buttonClass } from "@/components/ui";
 import { profile } from "@/content/profile";
-import { skills } from "@/content/skills";
 import { useOS } from "@/os/OSProvider";
-import { PhotoViewer } from "./PhotoViewer";
 
 const PHOTO_ALT = `${profile.nickname}, standing by a river`;
 
@@ -59,8 +58,8 @@ export default function AboutApp() {
         <button type="button" className={buttonClass.dark} onClick={() => open("projects")}>
           Open Projects/
         </button>
-        <button type="button" className={buttonClass.light} onClick={() => open("terminal")}>
-          Try the terminal
+        <button type="button" className={buttonClass.light} onClick={() => open("resume")}>
+          Resume
         </button>
       </div>
 
@@ -74,18 +73,6 @@ export default function AboutApp() {
             </div>
           ))}
         </dl>
-      </section>
-
-      <section aria-label="Skills" className="flex flex-col gap-2">
-        <h3 className="font-pixel text-sm">SKILLS</h3>
-        {Object.entries(skills).map(([group, list]) => (
-          <div key={group} className="flex flex-wrap items-center gap-1.5">
-            <span className="w-20 shrink-0 text-xs uppercase opacity-60">{group}</span>
-            {list.map((skill) => (
-              <Chip key={skill}>{skill}</Chip>
-            ))}
-          </div>
-        ))}
       </section>
     </div>
   );

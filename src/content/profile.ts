@@ -27,6 +27,12 @@ export const profile = {
     available: "now",
   },
 
+  /** The flashing bell in the menu bar. */
+  notification: {
+    title: "Hiring?",
+    message: "Interested in hiring for a Full Stack Developer position? Get in touch.",
+  },
+
   todo: [
     { done: true, text: "TechUp Full-Stack bootcamp" },
     { done: true, text: "Neatly Hotel @ Demo Day" },
@@ -36,3 +42,6 @@ export const profile = {
 } as const;
 
 export type Profile = typeof profile;
+
+/** Opens a Gmail compose window addressed to me, instead of the computer's default mail app (mailto:). */
+export const emailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`;
