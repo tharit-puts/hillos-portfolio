@@ -11,7 +11,7 @@ export interface Project {
   repoUrl?: string;
 }
 
-// TODO: add liveUrl / repoUrl for each project — buttons appear automatically.
+// liveUrl / repoUrl are optional: the matching button appears automatically when one is set.
 export const projects: Project[] = [
   {
     slug: "neatly-hotel",
@@ -21,6 +21,8 @@ export const projects: Project[] = [
       "Hotel booking platform with a chat widget, an admin dashboard and an AI chatbot.",
     role: "Room search, filters and booking history.",
     stack: ["Next.js", "TypeScript", "Supabase", "Prisma", "Stripe", "Gemini"],
+    liveUrl: "https://neatly-hotel-sigma.vercel.app/",
+    repoUrl: "https://github.com/beamMiter/Neatly-Hotel",
   },
   {
     slug: "course-flow",
@@ -29,6 +31,8 @@ export const projects: Project[] = [
     summary: "Online class management platform for admins and students.",
     role: "Java backend for assignment edit/delete, promo-code CRUD and a drag-and-drop fix.",
     stack: ["Vue", "Java", "Clerk"],
+    liveUrl: "https://course-flow-project.vercel.app/",
+    repoUrl: "https://github.com/vutthipatrchi/CourseFlow-Project",
   },
   {
     slug: "blog-post",
@@ -36,6 +40,8 @@ export const projects: Project[] = [
     kind: "Web app",
     summary: "A blog app, later connected to Supabase for real data.",
     stack: ["React", "Tailwind CSS", "JavaScript", "Supabase"],
+    liveUrl: "https://tharit-puts-project.vercel.app/",
+    repoUrl: "https://github.com/tharit-puts/tharit-puts-project",
   },
   {
     slug: "askhub-api",
