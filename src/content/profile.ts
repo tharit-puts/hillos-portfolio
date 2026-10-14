@@ -23,14 +23,14 @@ export const profile = {
 
   status: {
     bootcamp: "TechUp Full-Stack  [done, Oct 2026]",
-    lookingFor: "full-stack internship / junior role",
+    lookingFor: "junior full-stack developer role",
     available: "now",
   },
 
   todo: [
     { done: true, text: "TechUp Full-Stack bootcamp" },
     { done: true, text: "Neatly Hotel @ Demo Day" },
-    { done: false, text: "intern / junior role" },
+    { done: false, text: "junior full-stack developer role" },
     { done: false, text: "interview with you", strong: true },
   ],
 } as const;
