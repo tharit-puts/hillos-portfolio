@@ -10,6 +10,8 @@ export interface AppManifest {
   defaultPosition: Point;
   /** Tailwind width class for the window on tablet/desktop. */
   widthClass: string;
+  /** Optional Tailwind height class (use an md: prefix, phones are always full-screen). */
+  heightClass?: string;
   /** Tailwind background class for the title bar. */
   titleBarClass: string;
   /** Show an icon on the desktop? */
@@ -27,6 +29,7 @@ export const manifest: Record<AppId, AppManifest> = {
     title: "About.txt",
     defaultPosition: { x: 600, y: 32 },
     widthClass: "w-[520px]",
+    heightClass: "md:h-[760px]",
     titleBarClass: "bg-sun",
     onDesktop: true,
   },
