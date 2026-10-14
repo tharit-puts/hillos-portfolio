@@ -3,13 +3,26 @@
 import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { db } from "@/lib/supabase";
+import { makeDeleteToken, verifyDeleteToken } from "./deleteToken";
 import { checkRateLimit, DAILY_LIMIT } from "./rateLimit";
 import { validateEntry } from "./validate";
 
-export type FormState = { ok: boolean; error?: string };
+export type FormState = {
+  ok: boolean;
+  error?: string;
+  /** Sent back after posting. The browser keeps it so it can delete this entry later. */
+  receipt?: { id: string; token: string };
+};
 export type Entry = { id: string; name: string; message: string; created_at: string };
 
 const UNAVAILABLE = "The guestbook is taking a nap. Please try again later.";
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+function secret(): string {
+  const value = process.env.IP_HASH_SALT;
+  if (!value) throw new Error("IP_HASH_SALT is missing (see .env.local)");
+  return value;
+}
 
 /** A salted hash of the visitor's IP: enough to rate limit, without storing the IP itself. */
 async function visitorHash(): Promise<string> {
@@ -46,9 +59,40 @@ export async function signGuestbook(formData: FormData): Promise<FormState> {
     const limit = checkRateLimit((previous ?? []).map((r) => r.created_at));
     if (!limit.ok) return { ok: false, error: limit.error };
 
-    // 4) Save.
-    const { error: insertError } = await supabase.from("guestbook_entries").insert({ ...parsed.value, ip_hash });
-    if (insertError) return { ok: false, error: "Could not save your message. Please try again." };
+    // 4) Save, and hand the author a token so they can delete this entry later.
+    const { data: created, error: insertError } = await supabase
+      .from("guestbook_entries")
+      .insert({ ...parsed.value, ip_hash })
+      .select("id")
+      .single();
+    if (insertError || !created) return { ok: false, error: "Could not save your message. Please try again." };
+
+    return { ok: true, receipt: { id: created.id, token: makeDeleteToken(created.id, secret()) } };
+  } catch {
+    return { ok: false, error: UNAVAILABLE };
+  }
+}
+
+/**
+ * Deletes an entry for the person who wrote it (proved by the token from signGuestbook).
+ * The row is blanked and hidden, not removed, so it still counts toward the rate limit.
+ * Otherwise "post, delete, post, delete…" would get around it.
+ */
+export async function deleteEntry(id: string, token: string): Promise<FormState> {
+  if (typeof id !== "string" || typeof token !== "string" || !UUID.test(id)) {
+    return { ok: false, error: "Invalid request." };
+  }
+
+  try {
+    if (!verifyDeleteToken(id, token, secret())) {
+      return { ok: false, error: "You can only delete your own message." };
+    }
+
+    const { error } = await db()
+      .from("guestbook_entries")
+      .update({ hidden: true, name: "[deleted]", message: "[deleted]" })
+      .eq("id", id);
+    if (error) return { ok: false, error: "Could not delete your message. Please try again." };
 
     return { ok: true };
   } catch {
