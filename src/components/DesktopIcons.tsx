@@ -11,7 +11,8 @@ export function DesktopIcons() {
   return (
     <nav
       aria-label="Desktop"
-      className="grid grid-cols-3 gap-2 p-4 sm:grid-cols-6 md:absolute md:top-5 md:left-10 md:z-[1] md:flex md:flex-col md:gap-5 md:p-0"
+      // md+: one column down the left edge; when the desktop is too short for every icon the column wraps into a second one.
+      className="grid grid-cols-3 gap-2 p-4 sm:grid-cols-6 md:absolute md:top-5 md:bottom-5 md:left-10 md:z-1 md:flex md:flex-col md:flex-wrap md:content-start md:gap-x-3 md:gap-y-4 md:p-0"
     >
       {icons.map((id) => (
         <button
