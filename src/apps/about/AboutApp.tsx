@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import hillPhoto from "@/assets/hill-photo.jpg";
 import { Chip, buttonClass } from "@/components/ui";
 import { profile } from "@/content/profile";
-import { skills } from "@/content/skills";
+import { skillGroupLabels, skills, type SkillGroup } from "@/content/skills";
 import { useOS } from "@/os/OSProvider";
 import { PhotoViewer } from "./PhotoViewer";
 
@@ -78,12 +78,14 @@ export default function AboutApp() {
 
       <section aria-label="Skills" className="flex flex-col gap-2">
         <h3 className="font-pixel text-sm">SKILLS</h3>
-        {Object.entries(skills).map(([group, list]) => (
-          <div key={group} className="flex flex-wrap items-center gap-1.5">
-            <span className="w-20 shrink-0 text-xs uppercase opacity-60">{group}</span>
-            {list.map((skill) => (
-              <Chip key={skill}>{skill}</Chip>
-            ))}
+        {(Object.keys(skills) as SkillGroup[]).map((group) => (
+          <div key={group} className="flex flex-col gap-1">
+            <span className="text-xs uppercase opacity-60">{skillGroupLabels[group]}</span>
+            <div className="flex flex-wrap gap-1.5">
+              {skills[group].map((skill) => (
+                <Chip key={skill.name}>{skill.name}</Chip>
+              ))}
+            </div>
           </div>
         ))}
       </section>

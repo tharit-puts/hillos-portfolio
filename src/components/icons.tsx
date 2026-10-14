@@ -43,6 +43,16 @@ export function AppIcon({ id }: { id: AppId }) {
           <path d="M3 9l23 17L49 9" fill="none" />
         </svg>
       );
+    case "skills":
+      return (
+        <svg width="52" height="44" viewBox="0 0 52 44" {...common}>
+          <rect x="3" y="3" width="46" height="38" fill="#fff" />
+          <rect x="9" y="9" width="15" height="11" fill="var(--color-sun)" strokeWidth="2" />
+          <rect x="28" y="9" width="15" height="11" fill="var(--color-sky)" strokeWidth="2" />
+          <rect x="9" y="24" width="15" height="11" fill="var(--color-coral)" strokeWidth="2" />
+          <rect x="28" y="24" width="15" height="11" fill="var(--color-mint)" strokeWidth="2" />
+        </svg>
+      );
     case "guestbook":
       return (
         <svg width="44" height="52" viewBox="0 0 44 52" {...common}>

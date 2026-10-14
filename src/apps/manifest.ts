@@ -69,6 +69,15 @@ export const manifest: Record<AppId, AppManifest> = {
     titleBarClass: "bg-sky",
     onDesktop: true,
   },
+  skills: {
+    id: "skills",
+    label: "Skills.app",
+    title: "Skills.app",
+    defaultPosition: { x: 280, y: 90 },
+    widthClass: "w-[580px]",
+    titleBarClass: "bg-lilac",
+    onDesktop: true,
+  },
   guestbook: {
     id: "guestbook",
     label: "Guestbook.app",
