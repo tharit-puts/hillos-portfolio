@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COFFEE_COST, COFFEE_MIN, focusedId, isOpen, osReducer } from "./reducer";
+import { COFFEE_COST, COFFEE_MIN, focusedId, isOpen, osReducer, taskbarAction } from "./reducer";
 import type { OSState } from "./types";
 
 const empty: OSState = { windows: [], coffee: 50 };
@@ -61,5 +61,39 @@ describe("osReducer", () => {
     expect(s.coffee).toBe(COFFEE_MIN);
     s = osReducer(s, { type: "refill" });
     expect(s.coffee).toBe(100);
+  });
+
+  it("shutdown closes every window but keeps the coffee", () => {
+    let s = osReducer(empty, { type: "open", id: "about", position: at });
+    s = osReducer(s, { type: "open", id: "terminal", position: at });
+    s = osReducer(s, { type: "minimize", id: "terminal" });
+    s = osReducer(s, { type: "shutdown" });
+    expect(s.windows).toHaveLength(0);
+    expect(s.coffee).toBe(50 - 2 * COFFEE_COST);
+  });
+});
+
+describe("taskbarAction", () => {
+  const twoOpen = osReducer(osReducer(empty, { type: "open", id: "about", position: at }), {
+    type: "open",
+    id: "terminal",
+    position: at,
+  });
+
+  it("minimizes the window on top", () => {
+    expect(taskbarAction(twoOpen, "terminal")).toEqual({ type: "minimize", id: "terminal" });
+  });
+
+  it("brings a window that is behind to the front", () => {
+    expect(taskbarAction(twoOpen, "about")).toEqual({ type: "focus", id: "about" });
+  });
+
+  it("restores a minimized window, and focus un-minimizes it", () => {
+    const s = osReducer(twoOpen, { type: "minimize", id: "terminal" });
+    const action = taskbarAction(s, "terminal");
+    expect(action).toEqual({ type: "focus", id: "terminal" });
+    const restored = osReducer(s, action);
+    expect(isOpen(restored, "terminal")).toBe(true);
+    expect(focusedId(restored)).toBe("terminal");
   });
 });
