@@ -1,4 +1,5 @@
 import type { AppId } from "@/os/types";
+import { cn } from "./ui";
 
 /** Desktop icons, drawn as inline SVG so they stay crisp and need no image files. */
 export function AppIcon({ id }: { id: AppId }) {
@@ -42,6 +43,23 @@ export function AppIcon({ id }: { id: AppId }) {
           <path d="M3 9l23 17L49 9" fill="none" />
         </svg>
       );
+    case "skills":
+      return (
+        <svg width="52" height="44" viewBox="0 0 52 44" {...common}>
+          <rect x="3" y="3" width="46" height="38" fill="#fff" />
+          <rect x="9" y="9" width="15" height="11" fill="var(--color-sun)" strokeWidth="2" />
+          <rect x="28" y="9" width="15" height="11" fill="var(--color-sky)" strokeWidth="2" />
+          <rect x="9" y="24" width="15" height="11" fill="var(--color-coral)" strokeWidth="2" />
+          <rect x="28" y="24" width="15" height="11" fill="var(--color-mint)" strokeWidth="2" />
+        </svg>
+      );
+    case "guestbook":
+      return (
+        <svg width="44" height="52" viewBox="0 0 44 52" {...common}>
+          <path d="M5 3h34v46H5z" fill="var(--color-mint)" />
+          <path d="M12 3v46M19 16h14M19 24h14M19 32h9" />
+        </svg>
+      );
     case "trash":
       return (
         <svg width="40" height="50" viewBox="0 0 40 50" {...common}>
@@ -68,11 +86,48 @@ export function MinimizeIcon() {
   );
 }
 
-export function LogoIcon() {
+export function LogoIcon({ size = 18 }: { size?: number }) {
   return (
-    <svg aria-hidden width="18" height="18" viewBox="0 0 18 18">
+    <svg aria-hidden width={size} height={size} viewBox="0 0 18 18">
       <circle cx="9" cy="9" r="7.5" fill="#fff" stroke="currentColor" strokeWidth="2" />
       <path d="M9 1.5a7.5 7.5 0 0 1 0 15z" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function PowerIcon() {
+  return (
+    <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M8 1.5v6" />
+      <path d="M4.2 4a5.5 5.5 0 1 0 7.6 0" />
+    </svg>
+  );
+}
+
+/** Same as shadcn/ui's <Spinner /> (lucide "loader-circle" + animate-spin). Size it with size-* classes. */
+export function Spinner({ className }: { className?: string }) {
+  return (
+    <svg
+      role="status"
+      aria-label="Loading"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={cn("size-4 animate-spin", className)}
+    >
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
+  );
+}
+
+export function BellIcon() {
+  return (
+    <svg aria-hidden width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+      <path d="M4 11V7a4 4 0 0 1 8 0v4l1.5 1.5h-11z" />
+      <path d="M6.5 14a1.5 1.5 0 0 0 3 0" />
     </svg>
   );
 }

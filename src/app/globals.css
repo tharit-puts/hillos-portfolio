@@ -29,7 +29,8 @@
   --animate-pop: pop 0.25s cubic-bezier(0.2, 1.5, 0.4, 1);
   --animate-wiggle: wiggle 0.45s ease-in-out;
   --animate-blink: blink 1s steps(1) infinite;
-  --animate-boot-out: boot-out 0.35s ease-in 1.5s forwards;
+  --animate-alert: alert 0.9s steps(1) infinite;
+  --animate-boot-out: boot-out 0.4s ease-in 3.2s forwards;
   --animate-line-in: line-in 0.01s linear both;
 
   @keyframes pop {
@@ -40,6 +41,11 @@
     0%, 100% { transform: rotate(0); }
     25% { transform: rotate(-9deg) scale(1.06); }
     75% { transform: rotate(9deg) scale(1.06); }
+  }
+  /* Red/yellow flash for an unread notification. With reduced motion it stays on the element's own colour. */
+  @keyframes alert {
+    0% { background-color: var(--color-coral); }
+    50% { background-color: var(--color-sun); }
   }
   @keyframes blink {
     50% { opacity: 0; }
@@ -76,8 +82,9 @@ body {
   outline-offset: 2px;
 }
 
+/* Loading spinners (.animate-spin) keep spinning: they show progress, not decoration. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *:not(.animate-spin), *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

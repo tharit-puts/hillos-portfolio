@@ -10,6 +10,8 @@ export interface AppManifest {
   defaultPosition: Point;
   /** Tailwind width class for the window on tablet/desktop. */
   widthClass: string;
+  /** Optional Tailwind height class (use an md: prefix, phones are always full-screen). */
+  heightClass?: string;
   /** Tailwind background class for the title bar. */
   titleBarClass: string;
   /** Show an icon on the desktop? */
@@ -25,7 +27,7 @@ export const manifest: Record<AppId, AppManifest> = {
     id: "about",
     label: "About.txt",
     title: "About.txt",
-    defaultPosition: { x: 140, y: 32 },
+    defaultPosition: { x: 600, y: 32 },
     widthClass: "w-[520px]",
     titleBarClass: "bg-sun",
     onDesktop: true,
@@ -34,8 +36,8 @@ export const manifest: Record<AppId, AppManifest> = {
     id: "projects",
     label: "Projects/",
     title: "Projects/",
-    defaultPosition: { x: 200, y: 150 },
-    widthClass: "w-[720px]",
+    defaultPosition: { x: 170, y: 24 },
+    widthClass: "w-[1040px]",
     titleBarClass: "bg-sky",
     onDesktop: true,
   },
@@ -43,7 +45,7 @@ export const manifest: Record<AppId, AppManifest> = {
     id: "terminal",
     label: "Terminal",
     title: "hill@os: ~",
-    defaultPosition: { x: 700, y: 96 },
+    defaultPosition: { x: 1200, y: 96 },
     widthClass: "w-[580px]",
     titleBarClass: "bg-white",
     onDesktop: true,
@@ -52,8 +54,8 @@ export const manifest: Record<AppId, AppManifest> = {
     id: "resume",
     label: "Resume.pdf",
     title: "Resume.pdf",
-    defaultPosition: { x: 380, y: 120 },
-    widthClass: "w-[420px]",
+    defaultPosition: { x: 180, y: 24 },
+    widthClass: "w-[900px]",
     titleBarClass: "bg-coral",
     onDesktop: true,
   },
@@ -66,11 +68,29 @@ export const manifest: Record<AppId, AppManifest> = {
     titleBarClass: "bg-sky",
     onDesktop: true,
   },
+  skills: {
+    id: "skills",
+    label: "Skills.app",
+    title: "Skills.app",
+    defaultPosition: { x: 280, y: 90 },
+    widthClass: "w-[580px]",
+    titleBarClass: "bg-lilac",
+    onDesktop: true,
+  },
+  guestbook: {
+    id: "guestbook",
+    label: "Guestbook.app",
+    title: "Guestbook.app",
+    defaultPosition: { x: 420, y: 120 },
+    widthClass: "w-[480px]",
+    titleBarClass: "bg-mint",
+    onDesktop: true,
+  },
   trash: {
     id: "trash",
     label: "Trash",
     title: "Trash",
-    defaultPosition: { x: 320, y: 400 },
+    defaultPosition: { x: 320, y: 450 },
     widthClass: "w-[380px]",
     titleBarClass: "bg-neutral-200",
     onDesktop: true,

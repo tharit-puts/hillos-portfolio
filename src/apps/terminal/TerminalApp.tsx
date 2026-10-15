@@ -27,12 +27,20 @@ export default function TerminalApp() {
   const [history, setHistory] = useState<string[]>([]);
   const [cursor, setCursor] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const timers = useRef<number[]>([]);
 
+  // Scroll the terminal's own output, never the page. scrollIntoView() would also scroll the
+  // desktop sideways whenever this window extends past the right edge of a narrower screen.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ block: "nearest" });
+    const el = scrollerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
   }, [lines]);
+
+  // Same reason: focus without letting the browser scroll the desktop to reveal the input.
+  useEffect(() => {
+    inputRef.current?.focus({ preventScroll: true });
+  }, []);
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
@@ -92,8 +100,9 @@ export default function TerminalApp() {
   return (
     <div className="flex h-full flex-col bg-term text-[13px] leading-relaxed text-term-text">
       <div
+        ref={scrollerRef}
         className="flex max-h-[360px] min-h-[230px] flex-1 flex-col gap-0.5 overflow-auto p-4 max-md:max-h-none"
-        onClick={() => inputRef.current?.focus()}
+        onClick={() => inputRef.current?.focus({ preventScroll: true })}
       >
         {lines.map((l) => (
           <p key={l.id} className="whitespace-pre-wrap">
@@ -115,14 +124,12 @@ export default function TerminalApp() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
-            autoFocus
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
-            className="min-w-0 flex-1 bg-transparent text-term-text caret-mint outline-none focus-visible:outline-none"
+            className="min-w-0 flex-1 bg-transparent text-term-text caret-mint outline-none focus-visible:outline-none!"
           />
         </label>
-        <div ref={bottomRef} />
       </div>
       <div className="flex flex-wrap gap-2 border-t-[1.5px] border-neutral-700 px-4 py-3">
         {quickCommands.map((c) => (

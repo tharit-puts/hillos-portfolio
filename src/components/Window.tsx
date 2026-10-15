@@ -36,8 +36,9 @@ export function Window({ id, children }: { id: AppId; children: ReactNode }) {
         "absolute flex max-h-[calc(100%-16px)] max-w-[calc(100%-16px)] animate-pop flex-col border-2 border-ink bg-white",
         isFocused ? "shadow-hard" : "shadow-hard-sm",
         app.widthClass,
-        // Phones: every window becomes a full-screen sheet under the menu bar.
-        "max-md:fixed max-md:top-14! max-md:right-2 max-md:bottom-3 max-md:left-2! max-md:max-h-none max-md:w-auto! max-md:max-w-none",
+        app.heightClass,
+        // Phones: every window becomes a full-screen sheet between the menu bar and the taskbar (h-14).
+        "max-md:fixed max-md:top-14! max-md:right-2 max-md:bottom-17 max-md:left-2! max-md:max-h-none max-md:w-auto! max-md:max-w-none",
       )}
     >
       <div

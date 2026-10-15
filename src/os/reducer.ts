@@ -54,6 +54,9 @@ export function osReducer(state: OSState, action: OSAction): OSState {
     case "refill":
       return { ...state, coffee: COFFEE_FULL };
 
+    case "shutdown":
+      return { ...state, windows: [] };
+
     default:
       return state;
   }
@@ -65,6 +68,14 @@ export function focusedId(state: OSState): AppId | null {
     if (!state.windows[i].minimized) return state.windows[i].id;
   }
   return null;
+}
+
+/**
+ * What clicking an app's taskbar button does, like Windows:
+ * the window on top gets minimized; anything else (minimized or behind) comes to the front.
+ */
+export function taskbarAction(state: OSState, id: AppId): OSAction {
+  return focusedId(state) === id ? { type: "minimize", id } : { type: "focus", id };
 }
 
 export function isOpen(state: OSState, id: AppId): boolean {

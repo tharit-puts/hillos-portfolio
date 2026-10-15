@@ -25,8 +25,9 @@ npm run dev        # เปิด http://localhost:3000
 
 ### สิ่งที่ต้องแก้ก่อนใช้จริง
 
-- [ ] `src/content/profile.ts` → `email`, `links.github`, `links.linkedin`
-- [ ] `public/resume.pdf` → แทนที่ด้วย resume จริง (ตอนนี้เป็นไฟล์ตัวอย่าง)
+- [x] `src/content/profile.ts` → `email`, `links.github`, `links.linkedin` (ใส่ของจริงแล้ว)
+- [x] `public/Tharit_Putsorn_Resume.pdf` → resume จริง (ไฟล์ที่ปุ่ม Download ชี้ไป) และ `src/assets/Tharit_Putsorn_Resume.png` สำหรับแสดงในหน้าต่าง Resume
+      ถ้าอัปเดต resume ต้องเปลี่ยนทั้งสองไฟล์
 - [ ] `src/content/projects.ts` → ใส่ `liveUrl` / `repoUrl` ของแต่ละโปรเจกต์ (ปุ่มจะขึ้นมาเอง)
 
 ---
@@ -36,6 +37,9 @@ npm run dev        # เปิด http://localhost:3000
 - **หน้าต่าง**: ลากด้วย title bar ได้, คลิกแล้วขึ้นมาอยู่หน้าสุด, ย่อ/ปิดได้, กด `Esc` เพื่อปิดหน้าต่างที่อยู่หน้าสุด
 - **Terminal**: พิมพ์คำสั่งได้จริง มี `Tab` auto-complete, `↑ ↓` ดูประวัติคำสั่ง, `Ctrl+L` ล้างจอ
   ลองพิมพ์ `help`, `ls skills`, `cat status.txt`, `open projects`, `sudo hire hill`
+- **Taskbar** แบบ Windows: ปุ่ม Start (โลโก้ HillOS) อยู่กลาง ตามด้วยแอปที่เปิด/ย่ออยู่
+  กดแอปที่อยู่หน้าสุด = ย่อ, กดแอปอื่น = ดึงขึ้นมาหน้าสุด
+- **Shut down** จากเมนู Start: หน้า "Shutting down…" → จอดำมีโลโก้ กดโลโก้เพื่อเปิดเครื่อง (เล่น boot ใหม่)
 - **แถบกาแฟ** บน menu bar ลดลงทุกครั้งที่เปิดหน้าต่าง กดเพื่อเติม
 - **Boot screen** ตอนเข้าเว็บครั้งแรก (แสดงครั้งเดียวต่อ session)
 - **Trash** กดล้างถังหลายครั้งแล้วจะมี easter egg
@@ -77,9 +81,9 @@ src/
 │       └── commands.test.ts
 │
 └── components/             # ชิ้นส่วน UI ของ OS
-    ├── Desktop.tsx  MenuBar.tsx  Window.tsx
-    ├── DesktopIcons.tsx  StickyNote.tsx  BootScreen.tsx
-    ├── icons.tsx           # SVG icons
+    ├── Desktop.tsx  MenuBar.tsx  Window.tsx  TaskBar.tsx
+    ├── DesktopIcons.tsx  StickyNote.tsx  BootScreen.tsx  ShutdownScreen.tsx
+    ├── icons.tsx           # SVG icons + <Spinner> (แบบ shadcn)
     └── ui.tsx              # cn(), buttonClass, <Chip>
 ```
 

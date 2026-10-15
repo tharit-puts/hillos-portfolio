@@ -43,6 +43,18 @@ describe("runCommand", () => {
     expect(runCommand("ls skills/")).toEqual(runCommand("ls skills"));
   });
 
+  it("ls skills prints one line per group, using skill names", () => {
+    const { output } = runCommand("ls skills");
+    expect(output).toHaveLength(3);
+    expect(output[1]).toContain("Spring Boot");
+    expect(output[2]).toContain("Gemini API");
+    expect(output.join(" ")).not.toContain("[object Object]");
+  });
+
+  it("open skills opens the Skills app", () => {
+    expect(runCommand("open skills").effects).toEqual([{ type: "open", app: "skills" }]);
+  });
+
   it("clear and exit emit effects", () => {
     expect(runCommand("clear").effects).toEqual([{ type: "clear" }]);
     expect(runCommand("exit").effects).toEqual([{ type: "close", app: "terminal" }]);

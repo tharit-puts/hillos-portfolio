@@ -13,18 +13,22 @@ const LINES = [
   "welcome, visitor.",
 ];
 
-/** Shows a short boot sequence once per browser session, then fades out by itself (pure CSS). */
-export function BootScreen() {
+/**
+ * Shows a short boot sequence once per browser session, then fades out by itself (pure CSS).
+ * `always` skips the once-per-session check (used when powering back on after a shutdown).
+ */
+export function BootScreen({ always = false }: { always?: boolean }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
+    if (always) return;
     try {
       if (sessionStorage.getItem(STORAGE_KEY)) setShow(false);
       else sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {
       // storage blocked (private mode etc.) — just show the boot every time
     }
-  }, []);
+  }, [always]);
 
   if (!show) return null;
 
@@ -38,7 +42,7 @@ export function BootScreen() {
           <p
             key={line}
             className="animate-line-in"
-            style={{ animationDelay: `${i * 0.25}s` }}
+            style={{ animationDelay: `${i * 0.5}s` }}
           >
             {i === 0 ? <span className="font-pixel text-lg text-sun">{line}</span> : line}
           </p>
